@@ -11,8 +11,9 @@ ENDM
 ; [print forbid 2]
 	vc_const A_BUTTON
 ; [print forbid 3]
-	vc_const MAPGROUP_CIANWOOD
-	vc_const MAP_CIANWOOD_PHOTO_STUDIO
+	; TODO: Replace GROUP_NONE and MAP_NONE with the map that has the 'special PhotoStudio' NPC.
+	vc_const GROUP_NONE
+	vc_const MAP_NONE
 ; [print forbid 5]
 	vc_const NO_INPUT
 	vc_const B_BUTTON
