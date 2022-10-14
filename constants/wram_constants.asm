@@ -20,6 +20,7 @@ DEF AUTO_INPUT EQU $ff
 	const BOXMON     ; 2
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
+	const BUFFERMON  ; 5
 
 ; wFollowerFlags::
 	const_def

@@ -1,3 +1,18 @@
+LoadOverworldMonIcon:
+	ld a, e
+	ld [wCurIcon], a
+	; fallthrough
+_LoadOverworldMonIcon:
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, IconPointers
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	jp GetIconBank
+
 SetMenuMonColor:
 	push hl
 	push de
@@ -95,6 +110,41 @@ _FinishMenuMonColor:
 	pop bc
 	pop de
 	pop hl
+	ret
+
+GetMonPalInBCDE:
+; Sets BCDE to mon icon palette.
+; Input: c = species, b = shininess (1=true, 0=false)
+	ld hl, MenuMonPals
+	dec c
+
+	; This sets z if mon is shiny.
+	dec b
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	jr z, .shiny
+	swap a
+.shiny
+	and $f
+
+	; Now we have the target color. Get the palette (+ 2 to avoid white).
+	ld hl, PartyMenuOBPals + 2
+	ld bc, 1 palettes
+	call AddNTimes
+
+	push hl
+	ld a, BANK(PartyMenuOBPals)
+	call GetFarWord
+	ld b, h
+	ld c, l
+	pop hl
+	inc hl
+	inc hl
+	ld a, BANK(PartyMenuOBPals)
+	call GetFarWord
+	ld d, h
+	ld e, l
 	ret
 
 GetMenuMonPalette:
@@ -504,6 +554,14 @@ endr
 	pop hl
 	ret
 
+GetIconBank:
+	ld a, [wCurIcon]
+	cp MAGIKARP ; first species in "Mon Icons 2"
+	lb bc, BANK("Mon Icons 1"), 8
+	ret c
+	ld b, BANK("Mon Icons 2")
+	ret
+
 GetGFXUnlessMobile:
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -521,6 +579,24 @@ GetGFXUnlessMobile:
 	pop af
 	ldh [rSVBK], a
 	ret
+
+GetStorageIcon_a:
+; Load frame 1 icon graphics into VRAM starting from tile a
+	ld l, a ; no-optimize hl|bc|de = a * 16 (rept)
+	ld h, 0
+rept 4
+	add hl, hl
+endr
+	ld de, vTiles0
+	add hl, de
+	; fallthrough
+GetStorageIcon:
+	push hl
+	ld a, [wCurIcon]
+	call _LoadOverworldMonIcon
+	ld c, 4
+	pop hl
+	newfarjp BillsPC_SafeGet2bpp
 
 FreezeMonIcons:
 	ld hl, wSpriteAnimationStructs
@@ -608,3 +684,6 @@ HoldSwitchmonIcon:
 	ret
 
 INCLUDE "data/pokemon/menu_mon_pals.asm"
+;INCLUDE "data/pokemon/menu_icon_pals.asm"
+
+INCLUDE "data/pokemon/icon_pointers.asm"
