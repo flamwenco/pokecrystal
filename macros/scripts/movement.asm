@@ -224,4 +224,11 @@ MACRO jump_in_place
 	db movement_jump_in_place
 ENDM
 
+	const movement_run_step ; $5a
+MACRO run_step
+	db movement_run_step + \1
+ENDM
+
+	const_skip 3
+
 DEF NUM_MOVEMENT_CMDS EQU const_value

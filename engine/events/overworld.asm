@@ -1711,12 +1711,14 @@ Script_GetOnBike:
 	writetext GotOnBikeText
 	waitbutton
 	closetext
+	stowfollower
 	special UpdatePlayerSprite
 	end
 
 Script_GetOnBike_Register:
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
 	closetext
+	stowfollower
 	special UpdatePlayerSprite
 	end
 
@@ -1733,6 +1735,7 @@ Script_GetOffBike:
 
 FinishGettingOffBike:
 	closetext
+	appearfollower
 	special UpdatePlayerSprite
 	special PlayMapMusic
 	end
