@@ -103,6 +103,12 @@ FollowerInteractionTable:
 	interaction -1,         -1,           -1,       -1,                      -1,                       -1,       -1,         -1,                          DefaultInteraction
 
 DoFollowerInteraction:
+;No interaction if the follower is invisible
+    ld hl, wFollowerFlags
+    bit FOLLOWER_INVISIBLE_F, [hl]
+    ret nz
+    bit FOLLOWER_INVISIBLE_ONE_STEP_F, [hl]
+    ret nz
 	call StoreFollowerNickInBuffer
 	ld hl, FollowerInteractionTable
 	ld a, [wFollowerSpriteID]

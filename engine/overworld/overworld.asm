@@ -271,12 +271,15 @@ GetFirstAliveMon::
 	inc d
 	ld a, d
 	cp e
-	ret z
+	jr z, .no_alive_mons
 	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	jr .loop
+.no_alive_mons
+    ld d, 1
+    ld bc, wPartyMon1
 .got_mon_struct
 	ld a, [bc]
 	ret
