@@ -1234,6 +1234,7 @@ MovementFunction_ShakingGrass:
 	add hl, de
 	ld a, [hl]
 	add -1
+	add a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -2142,6 +2143,7 @@ StepFunction_TrackingObject:
 	ld a, [hl]
 	and a
 	ret z
+	dec [hl]
 	dec [hl]
 	ret nz
 .nope
