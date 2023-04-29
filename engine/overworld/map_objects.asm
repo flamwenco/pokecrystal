@@ -1104,7 +1104,7 @@ MovementFunction_Shadow:
 	ld a, [hl]
 	inc a
 	add a
-	add 0
+	add a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -1190,6 +1190,7 @@ MovementFunction_BoulderDust:
 	add hl, de
 	ld a, [hl]
 	inc a
+	add a
 	add a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
