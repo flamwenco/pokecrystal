@@ -116,12 +116,20 @@
 	charmap "y",         $b8
 	charmap "z",         $b9
 
-	charmap "┌",         $ba
-	charmap "─",         $bb
-	charmap "┐",         $bc
-	charmap "│",         $bd
-	charmap "└",         $be
-	charmap "┘",         $bf
+	charmap ">",		 $ba
+	charmap "<",		 $bb
+	charmap "=",		 $bc
+	charmap "+",		 $bd
+	charmap "<%>",		 $be
+	charmap "<BOLD_P>",	 $bf
+	charmap "<BOLD_C>",	 $c0
+
+	charmap "┌",         $c1
+	charmap "─",         $c2
+	charmap "┐",         $c3
+	charmap "│",         $c4
+	charmap "└",         $c5
+	charmap "┘",         $c6
 
 	charmap "′",         $ce
 	charmap "″",         $cf
@@ -137,8 +145,8 @@
 	charmap "■",         $d7
 	charmap "▲",         $d8
 	charmap "☎",         $d9
-	charmap "<BOLD_V>",  $da
-	charmap "<BOLD_S>",  $db
+	charmap "<BOLD_A>",  $da
+	charmap "<BOLD_B>",  $db
 	charmap "<COLON>",   $dc ; colon with tinier dots than ":"
 	charmap "“",         $dd ; opening quote
 	charmap "”",         $de ; closing quote

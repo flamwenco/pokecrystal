@@ -637,7 +637,6 @@ SECTION "Print Party", ROMX
 
 INCLUDE "engine/printer/print_party.asm"
 
-
 SECTION "bank77", ROMX
 
 INCLUDE "engine/rtc/print_hours_mins.asm"
@@ -700,6 +699,10 @@ INCLUDE "engine/gfx/copy_tilemap_at_once.asm"
 SECTION "VWF", ROMX
 
 INCLUDE "engine/gfx/vwf.asm"
+
+
+SECTION "Custom GFX", ROMX
+INCLUDE "gfx/rangi_gfx.asm"
 
 
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]

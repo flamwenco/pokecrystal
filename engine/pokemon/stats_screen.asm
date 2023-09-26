@@ -571,9 +571,14 @@ LoadPinkPage:
 	predef DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41 ; right HP/exp bar end cap
-	ld de, .Status_Type
+	ld de, .Status_Text ; string for "STATUS/"
 	hlcoord 0, 12
 	call PlaceString
+	ld de, .Type_Text ; string for "TYPE/"
+	hlcoord 0, 14
+	call PlaceString
+	call PrintMonTypeTiles ; custom GFX function
+
 	ld a, [wTempMonPokerusStatus]
 	ld b, a
 	and $f
@@ -581,30 +586,45 @@ LoadPinkPage:
 	ld a, b
 	and $f0
 	jr z, .NotImmuneToPkrs
-	hlcoord 8, 8
+	hlcoord 19, 1
 	ld [hl], "." ; Pokérus immunity dot
 .NotImmuneToPkrs:
 	ld a, [wMonType]
 	cp BOXMON
-	jr z, .StatusOK
-	hlcoord 6, 13
-	push hl
+	jr z, .done_status
 	ld de, wTempMonStatus
-	predef PlaceStatusString
-	pop hl
-	jr nz, .done_status
-	jr .StatusOK
+	predef GetStatusConditionIndex
+	ld a, d
+	and a
+	jr z, .StatusOK
+
+	; status index in a
+	ld hl, StatusIconGFX
+	ld bc, 2 * LEN_2BPP_TILE
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $50
+	lb bc, BANK(StatusIconGFX), 2
+	call Request2bpp
+
+	hlcoord 7, 12
+	ld a, $50 ; status tile first half
+	ld [hli], a
+	inc a ; status tile 2nd half
+	ld [hl], a
+	
+	jr .done_status
 .HasPokerus:
 	ld de, .PkrsStr
 	hlcoord 1, 13
 	call PlaceString
-	jr .done_status
+	jr .NotImmuneToPkrs
 .StatusOK:
+	hlcoord 7, 12
 	ld de, .OK_str
 	call PlaceString
 .done_status
-	hlcoord 1, 15
-	predef PrintMonTypes
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
@@ -688,9 +708,10 @@ LoadPinkPage:
 	ld [hl], a
 	ret
 
-.Status_Type:
-	db   "STATUS/"
-	next "TYPE/@"
+.Status_Text:
+	db   "STATUS/@"
+.Type_Text:
+	db   "TYPE/@"
 
 .OK_str:
 	db "OK @"
@@ -1085,23 +1106,54 @@ StatsScreen_AnimateEgg:
 	ret
 
 StatsScreen_LoadPageIndicators:
+IF DEF(FSP)
+	hlcoord 11, 5
+	ld a, $42 ; " " " "
+	call .load_square
 	hlcoord 13, 5
 	ld a, $36 ; first of 4 small square tiles
 	call .load_square
 	hlcoord 15, 5
-	ld a, $36 ; " " " "
+	ld a, $42 ; " " " "
 	call .load_square
 	hlcoord 17, 5
 	ld a, $36 ; " " " "
 	call .load_square
 	ld a, c
+	cp PINK_PAGE
+	hlcoord 11, 5
+	jr z, .load_highlighted_square_alt
 	cp GREEN_PAGE
+	hlcoord 13, 5
+	jr z, .load_highlighted_square
+	cp BLUE_PAGE
+	hlcoord 15, 5
+	jr z, .load_highlighted_square_alt
+	; must be ORANGE_PAGE
+	hlcoord 17, 5	
+ELSE
+	hlcoord 13, 5
+	ld a, $42 ; first of 4 small square tiles
+	call .load_square
+	hlcoord 15, 5
+	ld a, $36 ; " " " "
+	call .load_square
+	hlcoord 17, 5
+	ld a, $42 ; " " " "
+	call .load_square
+	ld a, c
+	cp PINK_PAGE
+	hlcoord 13, 5
+	jr z, .load_highlighted_square_alt	
+	cp GREEN_PAGE
+	hlcoord 15, 5
+	jr z, .load_highlighted_square
+	; can assume cp BLUE_PAGE will be true, no other choices
+	hlcoord 17, 5
+ENDC	
+	jr .load_highlighted_square_alt	
+.load_highlighted_square	
 	ld a, $3a ; first of 4 large square tiles
-	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
-	jr c, .load_square
-	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
-	jr z, .load_square
-	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
 .load_square
 	push bc
 	ld [hli], a
@@ -1115,6 +1167,9 @@ StatsScreen_LoadPageIndicators:
 	ld [hl], a
 	pop bc
 	ret
+.load_highlighted_square_alt
+	ld a, $46 ; first of 4 large square tiles, alternate Gray pixels for use of 3rd color slot
+	jr .load_square
 
 CopyNickname:
 	ld de, wStringBuffer1
@@ -1155,4 +1210,60 @@ CheckFaintedFrzSlp:
 
 .fainted_frz_slp
 	scf
+	ret
+
+PrintMonTypeTiles:
+	call GetBaseData
+	ld a, [wBaseType1]
+	ld c, a ; farcall will clobber a for the bank
+	farcall GetMonTypeIndex
+	ld a, c
+	ld hl, TypeLightIconGFX ; from gfx\stats\types_light.png
+	ld bc, 4 * LEN_2BPP_TILE ; Type GFX is 4 tiles wide
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $4c
+	lb bc, BANK(TypeLightIconGFX), 4 ; Bank in 'c', Number of Tiles in 'c'
+	call Request2bpp
+
+; placing the Type1 Tiles (from gfx\stats\types_light.png)
+	hlcoord 5, 14
+	ld [hl], $4c
+	inc hl
+	ld [hl], $4d
+	inc hl
+	ld [hl], $4e
+	inc hl
+	ld [hl], $4f
+	inc hl
+	ld a, [wBaseType1]
+	ld b, a
+	ld a, [wBaseType2]
+	cp b
+	ret z; Pokemon only has one Type
+
+	; Load Type2 GFX
+	; 2nd Type
+	ld c, a ; Pokemon's second type
+	farcall GetMonTypeIndex
+	ld a, c
+	ld hl, TypeDarkIconGFX ; from gfx\stats\types_dark.png
+	ld bc, 4 * LEN_2BPP_TILE ; Type GFX is 4 Tiles Wide
+	call AddNTimes ; type index needs to be in 'a'
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $5c
+	lb bc, BANK(TypeDarkIconGFX), 4 ; Bank in 'c', Number of Tiles in 'c'
+	call Request2bpp
+	
+; place Type 2 GFX
+	hlcoord 5, 15
+	ld [hl], $5c
+	inc hl
+	ld [hl], $5d
+	inc hl
+	ld [hl], $5e
+	inc hl
+	ld [hl], $5f
 	ret

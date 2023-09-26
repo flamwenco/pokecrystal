@@ -109,10 +109,10 @@ DrawPlayerHUDBorder:
 	jr PlaceHUDBorderTiles
 
 .tiles
-	db $73 ; right side
+	db $6d ; right side
 	db $77 ; bottom right
 	db $6f ; bottom left
-	db $76 ; bottom side
+	db $62 ; bottom side
 .tiles_end
 
 DrawPlayerPartyIconHUDBorder:
@@ -125,10 +125,10 @@ DrawPlayerPartyIconHUDBorder:
 	jr PlaceHUDBorderTiles
 
 .tiles
-	db $73 ; right side
+	db $6d ; right side
 	db $5c ; bottom right
 	db $6f ; bottom left
-	db $76 ; bottom side
+	db $62 ; bottom side
 .tiles_end
 
 DrawEnemyHUDBorder:
@@ -154,7 +154,7 @@ DrawEnemyHUDBorder:
 	db $6d ; left side
 	db $74 ; bottom left
 	db $78 ; bottom right
-	db $76 ; bottom side
+	db $62 ; bottom side
 .tiles_end
 
 PlaceHUDBorderTiles:
@@ -246,9 +246,9 @@ _ShowLinkBattleParticipants:
 	ld de, wOTPlayerName
 	call PlaceString
 	hlcoord 9, 8
-	ld a, "<BOLD_V>"
+	ld a, "V"
 	ld [hli], a
-	ld [hl], "<BOLD_S>"
+	ld [hl], "S"
 	farcall LinkBattle_TrainerHuds ; no need to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
