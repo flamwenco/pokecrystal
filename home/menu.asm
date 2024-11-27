@@ -425,10 +425,6 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
-PlaceGenericTwoOptionBox:: ; unreferenced
-	call LoadMenuHeader
-	jr InterpretTwoOptionMenu
-
 NoYesBox::
 	newfarjp _NoYesBox
 

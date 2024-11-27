@@ -273,11 +273,6 @@ ENDM
 	dict "ﾞ",         .place ; should be .diacritic
 	jr .not_diacritic
 
-.diacritic ; unreferenced
-	ld b, a
-	call Diacritic
-	jp NextChar
-
 .not_diacritic
 	cp FIRST_REGULAR_TEXT_CHAR
 	jr nc, .place
