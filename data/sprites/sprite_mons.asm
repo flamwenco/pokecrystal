@@ -37,4 +37,5 @@ SpriteMons:
 	db LUGIA
 	db HO_OH
 	db DRATINI
+	db FEAROW
 	assert_table_length NUM_POKEMON_SPRITES
