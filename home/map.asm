@@ -2167,9 +2167,11 @@ GetMapMusic::
 	cp MUSIC_RADIO_TOWER
 	jr z, .radiotower
 	farcall Function8b342
+.done
+	call ChangeMusicIfNight
 	ld e, c
 	ld d, 0
-.done
+
 	pop bc
 	pop hl
 	ret
@@ -2178,22 +2180,22 @@ GetMapMusic::
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	jr z, .clearedradiotower
-	ld de, MUSIC_ROCKET_OVERTURE
+	ld c, MUSIC_ROCKET_OVERTURE
 	jr .done
 
 .clearedradiotower
-	ld de, MUSIC_GOLDENROD_CITY
+	ld c, MUSIC_GOLDENROD_CITY
 	jr .done
 
 .mahoganymart
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
 	jr z, .clearedmahogany
-	ld de, MUSIC_ROCKET_HIDEOUT
+	ld c, MUSIC_ROCKET_HIDEOUT
 	jr .done
 
 .clearedmahogany
-	ld de, MUSIC_CHERRYGROVE_CITY
+	ld c, MUSIC_CHERRYGROVE_CITY
 	jr .done
 
 GetMapTimeOfDay::
@@ -2257,4 +2259,19 @@ DummyEndPredef::
 rept 16
 	nop
 endr
+	ret
+
+ChangeMusicIfNight::
+	ld a, [wTimeOfDay]
+  	cp NITE_F
+	ret c
+	ld hl, NightMusicTable
+.loop
+	ld a, [hli]
+	cp -1
+	ret z
+	cp c
+	ld a, [hli]
+	jr nz, .loop
+	ld c, a
 	ret
