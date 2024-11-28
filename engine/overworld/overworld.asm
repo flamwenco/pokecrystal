@@ -391,11 +391,11 @@ _GetSpritePalette::
 
 .follower
 	dec a
-	ld hl, MenuMonPals
+	ld hl, MonMenuIconPals
 	ld b, 0
 	ld c, a
 	add hl, bc
-	ld a, BANK(MenuMonPals)
+	ld a, BANK(MonMenuIconPals)
 	call GetFarByte
 	push de
 	ld d, a

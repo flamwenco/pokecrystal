@@ -2432,7 +2432,7 @@ wSpriteFlags:: db
 
 wHandlePlayerStep:: db
 
-wCurMenuMonHasItemOrMail:: db
+wCurIconMonHasItemOrMail:: db
 
 wPartyMenuActionText:: db
 
