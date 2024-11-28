@@ -1707,6 +1707,7 @@ BikeFunction:
 Script_GetOnBike:
 	refreshmap
 	special UpdateTimePals
+	loadvar VAR_FOLLOWERSTATE, PLAYER_BIKE
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
 	writetext GotOnBikeText
 	waitbutton
@@ -1716,6 +1717,7 @@ Script_GetOnBike:
 	end
 
 Script_GetOnBike_Register:
+	loadvar VAR_FOLLOWERSTATE, PLAYER_BIKE
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
 	closetext
 	stowfollower
@@ -1729,18 +1731,20 @@ Overworld_DummyFunction: ; unreferenced
 Script_GetOffBike:
 	refreshmap
 	special UpdateTimePals
+	loadvar VAR_FOLLOWERSTATE, PLAYER_NORMAL
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
 	writetext GotOffBikeText
 	waitbutton
 
 FinishGettingOffBike:
 	closetext
-	appearfollower
+	appearfolloweronestep
 	special UpdatePlayerSprite
 	special PlayMapMusic
 	end
 
 Script_GetOffBike_Register:
+	loadvar VAR_FOLLOWERSTATE, PLAYER_NORMAL
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
 	sjump FinishGettingOffBike
 
