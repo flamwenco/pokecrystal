@@ -211,15 +211,26 @@ GetMonSprite:
 	ld hl, SpriteMons
 	add hl, de
 	ld a, [hl]
-	jp GetWalkingMonSprite
+	jr .Mon
 
 .BreedMon1
 	ld a, [wBreedMon1Species]
-	jp GetWalkingMonSprite
+	jr .Mon
 
 .BreedMon2
 	ld a, [wBreedMon2Species]
-	jp GetWalkingMonSprite
+
+.Mon:
+	ld e, a
+	and a
+	jr z, .NoBreedmon
+
+	farcall LoadOverworldMonIcon
+
+	ld l, WALKING_SPRITE
+	ld h, 0
+	scf
+	ret
 
 .Variable:
 	sub SPRITE_VARS
@@ -230,6 +241,13 @@ GetMonSprite:
 	ld a, [hl]
 	and a
 	jp nz, GetMonSprite
+
+.NoBreedmon:
+	ld a, WALKING_SPRITE
+	ld l, WALKING_SPRITE
+	ld h, 0
+	and a
+	ret
 
 GetFirstAliveMon::
 ; Returns [wParty#Sprite] in a; party number in d
