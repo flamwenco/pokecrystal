@@ -2358,7 +2358,11 @@ WinTrainerBattle:
 	ld a, b
 	call z, PlayVictoryMusic
 	callfar Battle_GetTrainerName
+	ld hl, BattleText_PluralEnemyWereDefeated
+	call IsPluralTrainer
+	jr z, .got_defeat_phrase
 	ld hl, BattleText_EnemyWasDefeated
+.got_defeat_phrase:
 	call StdBattleTextbox
 
 	call IsMobileBattle
@@ -2602,6 +2606,14 @@ IsGymLeaderCommon:
 	ret
 
 INCLUDE "data/trainers/leaders.asm"
+
+IsPluralTrainer:
+; return z for plural trainers
+	ld a, [wOtherTrainerClass]
+	cp TWINS
+	;ret z
+	;cp ACE_DUO
+	ret
 
 HandlePlayerMonFaint:
 	call FaintYourPokemon
@@ -3492,7 +3504,11 @@ OfferSwitch:
 	ld a, [wCurPartyMon]
 	push af
 	callfar Battle_GetTrainerName
+	ld hl, BattleText_PluralEnemyAreAboutToUseWillPlayerChangeMon
+	call IsPluralTrainer
+	jr z, .got_switch_phrase
 	ld hl, BattleText_EnemyIsAboutToUseWillPlayerChangeMon
+.got_switch_phrase:
 	call StdBattleTextbox
 	lb bc, 1, 7
 	call PlaceYesNoBox
@@ -9196,6 +9212,9 @@ BattleStartMessage:
 
 	farcall Battle_GetTrainerName
 
+	ld hl, WantToBattlePluralText
+	call IsPluralTrainer
+	jr z, .PrintBattleStartText
 	ld hl, WantsToBattleText
 	jr .PrintBattleStartText
 
