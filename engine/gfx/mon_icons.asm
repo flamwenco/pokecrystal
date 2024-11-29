@@ -425,15 +425,17 @@ FlyFunction_GetMonIcon:
 	ld a, e
 	call GetIcon_a
 
-	; Edit the OBJ 0 palette so that the cursor Pokémon has the right colors.
-	ld a, MON_DVS
-	call GetPartyParamLocation
-	call GetMenuMonIconPalette
-	add a
-	add a
-	add a
-	ld e, a
-	farcall SetFirstOBJPalette
+	; Edit the OBJ 0 palette so that the flying Pokémon has the right colors.
+	;ld a, [wTempIconSpecies]
+	;ld [wCurPartySpecies], a
+	;ld a, MON_DVS
+	;call GetPartyParamLocation
+	;call GetMenuMonIconPalette
+	;add a
+	;add a
+	;add a
+	;ld e, a
+	;farcall SetFirstOBJPalette
 	ret
 
 GetMonIconDE: ; unreferenced

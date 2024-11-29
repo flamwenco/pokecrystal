@@ -153,6 +153,7 @@ if DEF(_DEBUG)
 	;loadmem wPartyMon3Moves+2, HEADBUTT
 	;loadmem wPartyMon3Moves+3, WATERFALL
 	; misc pokemon for testing
+	givepoke ARTICUNO, 50
 	givepoke SKARMORY, 50
 	givepoke OMASTAR, 50
 	givepoke RAICHU, 50
