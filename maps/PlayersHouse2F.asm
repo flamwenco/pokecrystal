@@ -144,9 +144,9 @@ if DEF(_DEBUG)
 	; hm slaves
 	givepoke MEW, 100, LEFTOVERS
 	;givepoke MEW, 100, LEFTOVERS
-	;loadmem wPartyMon2Moves+0, FLY
-	;loadmem wPartyMon2Moves+1, SURF
-	;loadmem wPartyMon2Moves+2, STRENGTH
+	loadmem wPartyMon2Moves+0, RAIN_DANCE
+	loadmem wPartyMon2Moves+1, SUNNY_DAY
+	loadmem wPartyMon2Moves+2, SANDSTORM
 	;loadmem wPartyMon2Moves+3, CUT
 	;loadmem wPartyMon3Moves+0, FLASH
 	;loadmem wPartyMon3Moves+1, ROCK_SMASH
