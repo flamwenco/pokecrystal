@@ -1137,123 +1137,20 @@ _BuenaOffTheAirText::
 _EnemyWithdrewText::
 	text "<ENEMY>"
 	line "withdrew"
-	cont "@"
+	scroll "@"
 	text_ram wEnemyMonNickname
 	text "!"
-	prompt
+	autodone
 
 _EnemyUsedOnText::
 	text "<ENEMY>"
 	line "used @"
 	text_ram wMonOrItemNameBuffer
 	text_start
-	cont "on @"
+	scroll "on @"
 	text_ram wEnemyMonNickname
 	text "!"
-	prompt
-
-_ThatCantBeUsedRightNowText:: ; unreferenced
-	text "That can't be used"
-	line "right now."
-	prompt
-
-_ThatItemCantBePutInThePackText:: ; unreferenced
-	text "That item can't be"
-	line "put in the PACK."
-	done
-
-_TheItemWasPutInThePackText:: ; unreferenced
-	text "The @"
-	text_ram wStringBuffer1
-	text_start
-	line "was put in the"
-	cont "PACK."
-	done
-
-_RemainingTimeText:: ; unreferenced
-	text "Remaining Time"
-	done
-
-_YourMonsHPWasHealedText:: ; unreferenced
-	text "Your #MON's HP"
-	line "was healed."
-	prompt
-
-_WarpingText:: ; unreferenced
-	text "Warping…"
-	done
-
-_ChangeWhichNumberText:: ; unreferenced
-	text "Which number"
-	line "should be changed?"
-	done
-
-_WillYouPlayWithMonText:: ; unreferenced
-	text "Will you play with"
-	line "@"
-	text_ram wStringBuffer2
-	text "?"
-	done
-
-_YouNeedTwoMonForBreedingText:: ; unreferenced
-	text "You need two #-"
-	line "MON for breeding."
-	prompt
-
-_BreedingIsNotPossibleText:: ; unreferenced
-	text "Breeding is not"
-	line "possible."
-	prompt
-
-_CompatibilityShouldTheyBreedText:: ; unreferenced
-	text "The compatibility"
-	line "is @"
-	text_decimal wBreedingCompatibility, 1, 3
-	text "."
-	cont "Should they breed?"
-	done
-
-_ThereIsNoEggText:: ; unreferenced
-	text "There is no EGG."
-	line ""
-	prompt
-
-_ItsGoingToHatchText:: ; unreferenced
-	text "It's going to"
-	line "hatch!"
-	prompt
-
-_TestEventText:: ; unreferenced
-	text "Test event"
-	line "@"
-	text_decimal wStringBuffer2, 1, 2
-	text "?"
-	done
-
-_StartText:: ; unreferenced
-	text "Start!"
-	done
-
-_EndText:: ; unreferenced
-	text "End!"
-	done
-
-_ForABoyText:: ; unreferenced
-	text "For a boy!"
-	done
-
-_ForAGirlText:: ; unreferenced
-	text "For a girl!"
-	done
-
-_DoesntConcernABoyText:: ; unreferenced
-	text "This doesn't"
-	line "concern a boy!"
-	done
-
-_TheBoxIsFullText:: ; unreferenced
-	text "The BOX is full!"
-	done
+	autodone
 
 ; Mobile Adapter
 

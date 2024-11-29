@@ -69,6 +69,10 @@ SECTION "serial", ROM0[$0058]
 SECTION "joypad", ROM0[$0060]
 	jp Joypad
 
+; Carefully stick some extra shit here to squeeze everything into home
+INCLUDE "home/audionighttable.asm"
+INCLUDE "home/sine.asm"
+INCLUDE "home/array.asm"
 
 SECTION "Header", ROM0[$0100]
 

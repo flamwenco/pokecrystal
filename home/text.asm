@@ -238,9 +238,10 @@ ENDM
 	dict "<NEXT>",    NextLineChar
 	dict "<CR>",      CarriageReturnChar
 	dict "<NULL>",    NullChar
-	dict "<SCROLL>",  _ContTextNoPause
+	dict "<SCROLL>",  _ContTextPauseShort
 	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
+	dict "<ATPRA>",   AutoParagraph
 	dict "<MOM>",     PrintMomsName
 	dict "<PLAYER>",  PrintPlayerName
 	dict "<RIVAL>",   PrintRivalName
@@ -259,6 +260,7 @@ ENDM
 	dict "<CONT>",    ContText
 	dict "<……>",      SixDotsChar
 	dict "<DONE>",    DoneText
+	dict "<ATDNE>",   AutoDoneText
 	dict "<PROMPT>",  PromptText
 	dict "<PKMN>",    PlacePKMN
 	dict "<POKE>",    PlacePOKE
@@ -485,6 +487,20 @@ Paragraph::
 	pop de
 	jp NextChar
 
+AutoParagraph::
+	push de
+	call Text_WaitBGMap
+	ld c, 10
+	call DelayFrames
+	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
+	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
+	call ClearBox
+	ld c, 20
+	call DelayFrames
+	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
+	pop de
+	jp NextChar
+
 _ContText::
 	ld a, [wLinkMode]
 	or a
@@ -508,6 +524,16 @@ _ContTextNoPause::
 	call TextScroll
 	call TextScroll
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
+	pop de
+	jp NextChar
+
+_ContTextPauseShort::
+	push de
+	call TextScroll
+	call TextScroll
+	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
+	ld c, 5
+	call DelayFrames
 	pop de
 	jp NextChar
 
@@ -557,6 +583,12 @@ DoneText::
 
 .stop:
 	text_end
+
+AutoDoneText::
+	call Text_WaitBGMap
+	ld c, 20
+	call DelayFrames
+	jr DoneText
 
 NullChar::
 	ld a, "?"

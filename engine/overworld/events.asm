@@ -100,7 +100,7 @@ EnterMap:
 
 HandleMap:
 	call HandleMapTimeAndJoypad
-	call HandleCmdQueue
+	call HandleStoneTable
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
