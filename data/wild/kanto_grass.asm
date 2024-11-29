@@ -397,29 +397,29 @@ KantoGrassWildMons:
 	def_grass_wildmons ROUTE_9
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 15, RATTATA
-	db 15, SPEAROW
-	db 15, RATICATE
-	db 15, FEAROW
-	db 15, FEAROW
-	db 18, MAROWAK
+	db 18, RATTATA
+	db 16, MANKEY
+	db 17, SPEAROW
+	db 20, RATICATE
+	db 19, FEAROW
+	db 18, PRIMEAPE
 	db 18, MAROWAK
 	; day
-	db 15, RATTATA
-	db 15, SPEAROW
-	db 15, RATICATE
-	db 15, FEAROW
-	db 15, FEAROW
-	db 18, MAROWAK
+	db 18, RATTATA
+	db 16, MANKEY
+	db 17, SPEAROW
+	db 20, RATICATE
+	db 19, FEAROW
+	db 18, PRIMEAPE
 	db 18, MAROWAK
 	; nite
-	db 15, RATTATA
-	db 15, VENONAT
-	db 15, RATICATE
-	db 15, VENOMOTH
-	db 15, ZUBAT
-	db 18, RATICATE
-	db 18, RATICATE
+	db 18, RATTATA
+	db 16, MANKEY
+	db 17, VENONAT
+	db 20, RATICATE
+	db 19, VENOMOTH
+	db 18, PRIMEAPE
+	db 18, MAROWAK
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_10_NORTH
