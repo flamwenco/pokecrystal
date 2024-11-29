@@ -138,9 +138,9 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3Moves+2, HEADBUTT
 	loadmem wPartyMon3Moves+3, WATERFALL
 	; misc pokemon for testing
-	givepoke PIKACHU, 50
-	givepoke GENGAR, 50
-	givepoke DITTO, 50
+	givepoke SKARMORY, 50
+	givepoke OMASTAR, 50
+	givepoke RAICHU, 50
 	; intro events
 	addcellnum PHONE_MOM
 	setmapscene PLAYERS_HOUSE_1F, $1
