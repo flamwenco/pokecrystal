@@ -10,6 +10,7 @@
 	const ROUTE25_SUPER_NERD
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
+	const ROUTE25_YOUNGSTER4
 
 Route25_MapScripts:
 	def_scene_scripts
@@ -181,6 +182,71 @@ TrainerCooltrainermKevin:
 .NoRoomForNugget:
 	closetext
 	end
+
+GiftCharmanderScript:
+	faceplayer
+	checkevent EVENT_GOT_ROUTE_25_GIFT_POKE
+	iftrue .AlreadyGotGiftPoke
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFullGift
+	opentext
+	writetext GiftCharmanderGiftText
+	promptbutton
+	getmonname STRING_BUFFER_3, MEWTWO
+	writetext ReceivedCharmanderGiftText
+	promptbutton
+	givepoke CHARMANDER, 10, BERRY
+	setevent EVENT_GOT_ROUTE_25_GIFT_POKE
+	closetext
+	end
+	
+.PartyFullGift:
+	opentext
+	writetext PartyFullCharmanderGiftText
+	waitbutton
+	closetext
+	end
+
+.AlreadyGotGiftPoke:
+	opentext
+	writetext AlreadyGotCharmanderGiftText
+	waitbutton
+	closetext
+	end
+
+PartyFullCharmanderGiftText:
+	text "I was going to"
+	line "give you something"
+
+	para "but your party"
+	line "seems to be full."
+	done
+
+GiftCharmanderGiftText:
+	text "I'm not good at"
+	line "raising #MON."
+
+	para "I should release"
+	line "my CHARMANDER"
+	cont "because I haven't"
+	cont "raised it well..."
+
+	para "If you promise me"
+	line "you'll care for"
+	cont "it, it's yours."
+	done
+
+ReceivedCharmanderGiftText:
+	text "<PLAYER> received"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
+AlreadyGotCharmanderGiftText:
+	text "How's CHARMANDER"
+	line "doing?"
+	done
 
 BillsHouseSign:
 	jumptext BillsHouseSignText
@@ -453,3 +519,4 @@ Route25_MapEvents:
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
+	object_event  7,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GiftCharmanderScript, -1

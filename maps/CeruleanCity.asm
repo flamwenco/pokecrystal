@@ -5,6 +5,7 @@
 	const CERULEANCITY_COOLTRAINER_F
 	const CERULEANCITY_FISHER
 	const CERULEANCITY_YOUNGSTER
+	const CERULEANCITY_LASS
 
 CeruleanCity_MapScripts:
 	def_scene_scripts
@@ -119,6 +120,74 @@ CeruleanCityYoungsterScript:
 	waitbutton
 	closetext
 	end
+
+GiftBulbasaurScript:
+	faceplayer
+	checkevent EVENT_GOT_CERULEAN_GIFT_POKE
+	iftrue .AlreadyGotGiftPoke
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFullGift
+	opentext
+	writetext GiftBulbasaurGiftText
+	promptbutton
+	getmonname STRING_BUFFER_3, MEWTWO
+	writetext ReceivedBulbasaurGiftText
+	promptbutton
+	givepoke BULBASAUR, 10, BERRY
+	setevent EVENT_GOT_CERULEAN_GIFT_POKE
+	closetext
+	end
+	
+.PartyFullGift:
+	opentext
+	writetext PartyFullBulbasaurGiftText
+	waitbutton
+	closetext
+	end
+
+.AlreadyGotGiftPoke:
+	opentext
+	writetext AlreadyGotBulbasaurGiftText
+	waitbutton
+	closetext
+	end
+
+PartyFullBulbasaurGiftText:
+	text "I was going to"
+	line "give you something"
+
+	para "but your party"
+	line "seems to be full."
+	done
+
+GiftBulbasaurGiftText:
+	text "I take care of"
+	line "injured #MON."
+
+	para "I nursed this"
+	line "BULBASAUR back to"
+	cont "health."
+
+	para "It needs a good"
+	line "trainer to take"
+	cont "care of it now."
+
+	para "I know! Would you"
+	line "take care of this"
+	cont "BULBASAUR?"
+	done
+
+ReceivedBulbasaurGiftText:
+	text "<PLAYER> received"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
+AlreadyGotBulbasaurGiftText:
+	text "Is BULBASAUR"
+	line "doing well?"
+	done
 
 CeruleanCitySign:
 	jumptext CeruleanCitySignText
@@ -304,3 +373,4 @@ CeruleanCity_MapEvents:
 	object_event 21, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerFScript, -1
 	object_event 30, 26, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityFisherScript, -1
 	object_event  6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityYoungsterScript, -1
+	object_event 15, 20, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GiftBulbasaurScript, -1

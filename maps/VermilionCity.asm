@@ -5,6 +5,7 @@
 	const VERMILIONCITY_SUPER_NERD
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_POKEFAN_M
+	const VERMILIONCITY_OFFICER
 
 VermilionCity_MapScripts:
 	def_scene_scripts
@@ -98,6 +99,70 @@ VermilionGymBadgeGuy:
 .Done:
 	closetext
 	end
+
+GiftSquirtleScript:
+	faceplayer
+	checkevent EVENT_GOT_VERMILION_GIFT_POKE
+	iftrue .AlreadyGotGiftPoke
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFullGift
+	opentext
+	writetext GiftPokemonDudeGiftText
+	promptbutton
+	getmonname STRING_BUFFER_3, MEWTWO
+	writetext ReceivedGiftText
+	promptbutton
+	givepoke SQUIRTLE, 10, BERRY
+	setevent EVENT_GOT_VERMILION_GIFT_POKE
+	closetext
+	end
+	
+.PartyFullGift:
+	opentext
+	writetext PartyFullGiftText
+	waitbutton
+	closetext
+	end
+
+.AlreadyGotGiftPoke:
+	opentext
+	writetext AlreadyGotGiftText
+	waitbutton
+	closetext
+	end
+
+PartyFullGiftText:
+	text "I was going to"
+	line "give you something"
+
+	para "but your party"
+	line "seems to be full."
+	done
+
+GiftPokemonDudeGiftText:
+	text "You must be a"
+	line "good trainer!"
+
+	para "I just caught a"
+	line "SQUIRTLE that was"
+	cont "always getting"
+	cont "into mischief."
+
+	para "Would you take"
+	line "good care of it?"
+	done
+
+ReceivedGiftText:
+	text "<PLAYER> received"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
+AlreadyGotGiftText:
+	text "How is SQUIRTLE"
+	line "doing?"
+	done
 
 VermilionCitySign:
 	jumptext VermilionCitySignText
@@ -299,3 +364,4 @@ VermilionCity_MapEvents:
 	object_event 14, 16, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1
 	object_event 34,  8, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_BIGDOLLSYM, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	object_event 31, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1
+	object_event 14,  6, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GiftSquirtleScript, -1
