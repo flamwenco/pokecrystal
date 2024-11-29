@@ -5,33 +5,33 @@ Music:
 	table_width 3, Music
 	dba Music_Nothing
 	dba Music_TitleScreen
-	dba Music_Route1
-	dba Music_Route3
-	dba Music_Route12
+	dba Music_GSCRoute1
+	dba Music_GSCRoute3
+	dba Music_GSCRoute12
 	dba Music_MagnetTrain
 	dba Music_KantoGymBattle
 	dba Music_KantoTrainerBattle
-	dba Music_KantoWildBattle
+	dba Music_GSCKantoWildBattle
 	dba Music_PokemonCenter
 	dba Music_LookHiker
 	dba Music_LookLass
 	dba Music_LookOfficer
 	dba Music_HealPokemon
-	dba Music_LavenderTown
+	dba Music_GSCLavenderTown
 	dba Music_Route2
 	dba Music_MtMoon
 	dba Music_ShowMeAround
 	dba Music_GameCorner
 	dba Music_Bicycle
 	dba Music_HallOfFame
-	dba Music_ViridianCity
-	dba Music_CeladonCity
+	dba Music_GSCViridianCity
+	dba Music_GSCCeladonCity
 	dba Music_TrainerVictory
 	dba Music_WildPokemonVictory
 	dba Music_GymLeaderVictory
 	dba Music_MtMoonSquare
 	dba Music_Gym
-	dba Music_PalletTown
+	dba Music_GSCPalletTown
 	dba Music_ProfOaksPokemonTalk
 	dba Music_ProfOak
 	dba Music_LookRival
@@ -65,7 +65,7 @@ Music:
 	dba Music_LookSage
 	dba Music_NewBarkTown
 	dba Music_GoldenrodCity
-	dba Music_VermilionCity
+	dba Music_GSCVermilionCity
 	dba Music_PokemonChannel
 	dba Music_PokeFluteChannel
 	dba Music_TinTower
@@ -108,4 +108,24 @@ Music:
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
 	dba Music_NewBarkTownNight
+	dba Music_Route29Night
+	dba Music_CherrygroveCityNight
+	dba Music_GSCKantoWildBattleNight
+	dba Music_Route30Night
+	dba Music_VioletCityNight
+	dba Music_AzaleaTownNight
+	dba Music_GoldenrodCityNight
+	dba Music_EcruteakCityNight
+	dba Music_Route37Night
+	dba Music_LakeOfRageNight
+	dba Music_Route26Night
+	dba Music_GSCViridianCity_Night
+	dba Music_GSCRoute3_Night
+	dba Music_GSCRoute12_Night
+	dba Music_GSCCeladonCity_Night
+	dba Music_GSCVermilionCityNight
+	dba Music_GSCPalletTownNight
+	dba Music_GSCRoute1Night
+	dba Music_GSCLavenderTownNight
+	dba Music_Route36Night
 	assert_table_length NUM_MUSIC_SONGS
