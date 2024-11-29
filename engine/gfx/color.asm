@@ -1020,29 +1020,17 @@ GetTrainerPalettePointer:
 	add hl, bc
 	ret
 
+LoadPokemonPalette:
+	ld a, [wCurPartySpecies]
+	; hl = palette
+	call GetMonPalettePointer
+	; load palette into de (set by caller)
+	ld bc, PAL_COLOR_SIZE * 2
+	ld a, BANK(wBGPals1)
+	jp FarCopyWRAM
+
 GetMonPalettePointer:
 	call _GetMonPalettePointer
-	ret
-
-CGBCopyBattleObjectPals: ; unreferenced
-; dummied out
-	ret
-	call CheckCGB
-	ret z
-	ld hl, BattleObjectPals
-	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
-	ldh [rOBPI], a
-	ld c, 6 palettes
-.loop
-	ld a, [hli]
-	ldh [rOBPD], a
-	dec c
-	jr nz, .loop
-	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
-	ld bc, 2 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
 	ret
 
 BattleObjectPals:
