@@ -63,6 +63,20 @@ if DEF(_DEBUG)
 	; useful items
 	giveitem MAX_REPEL, 99
 	giveitem MASTER_BALL, 99
+
+	giveitem HM_FLY
+	giveitem HM_SURF
+	giveitem HM_CUT
+	giveitem HM_STRENGTH
+	giveitem HM_FLASH
+	giveitem HM_WHIRLPOOL
+	giveitem HM_WATERFALL
+
+	giveitem TM_ROCK_SMASH
+	giveitem TM_HEADBUTT
+	giveitem TM_SWEET_SCENT
+	giveitem TM_DIG
+	
 	; all badges
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
@@ -128,15 +142,15 @@ if DEF(_DEBUG)
 	givepoke MEWTWO, 100, BRIGHTPOWDER
 	; hm slaves
 	givepoke MEW, 100, LEFTOVERS
-	givepoke MEW, 100, LEFTOVERS
-	loadmem wPartyMon2Moves+0, FLY
-	loadmem wPartyMon2Moves+1, SURF
-	loadmem wPartyMon2Moves+2, STRENGTH
-	loadmem wPartyMon2Moves+3, CUT
-	loadmem wPartyMon3Moves+0, FLASH
-	loadmem wPartyMon3Moves+1, ROCK_SMASH
-	loadmem wPartyMon3Moves+2, HEADBUTT
-	loadmem wPartyMon3Moves+3, WATERFALL
+	;givepoke MEW, 100, LEFTOVERS
+	;loadmem wPartyMon2Moves+0, FLY
+	;loadmem wPartyMon2Moves+1, SURF
+	;loadmem wPartyMon2Moves+2, STRENGTH
+	;loadmem wPartyMon2Moves+3, CUT
+	;loadmem wPartyMon3Moves+0, FLASH
+	;loadmem wPartyMon3Moves+1, ROCK_SMASH
+	;loadmem wPartyMon3Moves+2, HEADBUTT
+	;loadmem wPartyMon3Moves+3, WATERFALL
 	; misc pokemon for testing
 	givepoke SKARMORY, 50
 	givepoke OMASTAR, 50
