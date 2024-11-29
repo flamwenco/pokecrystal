@@ -63,6 +63,7 @@ if DEF(_DEBUG)
 	; useful items
 	giveitem MAX_REPEL, 99
 	giveitem MASTER_BALL, 99
+	giveitem SUPER_ROD
 
 	giveitem HM_FLY
 	giveitem HM_SURF
@@ -76,7 +77,7 @@ if DEF(_DEBUG)
 	giveitem TM_HEADBUTT
 	giveitem TM_SWEET_SCENT
 	giveitem TM_DIG
-	
+
 	; all badges
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
