@@ -126,6 +126,7 @@
 	const MUSIC_ROUTE_1_NIGHT				 ; 79
 	const MUSIC_LAVENDER_TOWN_NIGHT			 ; 7a
 	const MUSIC_ROUTE_36_NIGHT				 ; 7b
+	const MUSIC_CINNABAR_ISLAND			     ; 7c
 DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for these values (see home/map.asm)

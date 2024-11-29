@@ -128,4 +128,5 @@ Music:
 	dba Music_GSCRoute1Night
 	dba Music_GSCLavenderTownNight
 	dba Music_Route36Night
+	dba Music_CinnabarIslandGBS
 	assert_table_length NUM_MUSIC_SONGS

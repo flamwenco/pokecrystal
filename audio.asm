@@ -169,3 +169,8 @@ INCLUDE "audio/music/lakeofrage.asm"
 INCLUDE "audio/music/route26.asm"
 INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/route3.asm"
+
+
+SECTION "New Songs", ROMX
+
+INCLUDE "audio/music/cinnabarisland.asm"
