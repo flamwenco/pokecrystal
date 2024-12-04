@@ -3236,9 +3236,9 @@ RaikouEvosAttacks:
 	db 1, BITE
 	db 1, LEER
 	db 11, THUNDERSHOCK
-	db 21, ROAR
+	db 21, SPARK
 	db 31, QUICK_ATTACK
-	db 41, SPARK
+	db 41, ROAR ; end my suffering
 	db 51, REFLECT
 	db 61, CRUNCH
 	db 71, THUNDER
@@ -3249,9 +3249,9 @@ EnteiEvosAttacks:
 	db 1, BITE
 	db 1, LEER
 	db 11, EMBER
-	db 21, ROAR
+	db 21, STOMP
 	db 31, FIRE_SPIN
-	db 41, STOMP
+	db 41, ROAR	; end my suffering
 	db 51, FLAMETHROWER
 	db 61, SWAGGER
 	db 71, FIRE_BLAST
@@ -3320,30 +3320,32 @@ TyranitarEvosAttacks:
 
 LugiaEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, AEROBLAST
+	db 1, SWIFT
 	db 11, SAFEGUARD
 	db 22, GUST
 	db 33, RECOVER
 	db 44, HYDRO_PUMP
+	db 45, AEROBLAST
 	db 55, RAIN_DANCE
-	db 66, SWIFT
-	db 77, WHIRLWIND
-	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
+	;db 66, SWIFT
+	db 66, WHIRLWIND
+	db 77, ANCIENTPOWER
+	db 88, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HoOhEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SACRED_FIRE
+	db 1, SWIFT
 	db 11, SAFEGUARD
 	db 22, GUST
 	db 33, RECOVER
 	db 44, FIRE_BLAST
+	db 45, SACRED_FIRE
 	db 55, SUNNY_DAY
-	db 66, SWIFT
-	db 77, WHIRLWIND
-	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
+	;db 66, SWIFT
+	db 66, WHIRLWIND
+	db 77, ANCIENTPOWER
+	db 88, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 CelebiEvosAttacks:
