@@ -2332,6 +2332,7 @@ wItemsPocketCursor::    db
 wKeyItemsPocketCursor:: db
 wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
+wBerryPocketCursor::    db
 
 wPCItemsScrollPosition::        db
 	ds 1
@@ -2339,6 +2340,7 @@ wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
 wTMHMPocketScrollPosition::     db
+wBerryPocketScrollPosition::    db
 
 wSwitchMon::
 wSwitchItem::
@@ -2850,6 +2852,8 @@ wDudeKeyItems:: ds 18 + 1
 
 wDudeNumBalls:: db
 wDudeBalls:: ds 2 * 4 + 1
+
+wDudeNumBerries::
 ENDU
 
 	ds 4
@@ -3071,6 +3075,9 @@ wKeyItems:: ds MAX_KEY_ITEMS + 1
 wNumBalls:: db
 wBalls:: ds MAX_BALLS * 2 + 1
 
+wNumBerries:: db
+wBerries:: ds MAX_BERRIES * 2 + 1
+
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
@@ -3178,7 +3185,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 49
+	;ds 49
 
 ; fight counts
 wJackFightCount::    db
