@@ -703,12 +703,18 @@ INCLUDE "engine/gfx/vwf.asm"
 
 
 SECTION "Custom GFX", ROMX
+
 INCLUDE "gfx/rangi_gfx.asm"
 
 
 SECTION "Battle Weather Images", ROMX
 
 INCLUDE "gfx/weather_images.asm"
+
+
+SECTION "Own Section", ROMX
+
+INCLUDE "engine/battle/swarm_shiny.asm"
 
 
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]

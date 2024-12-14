@@ -256,6 +256,102 @@ BurnedTowerSignText:
 	line "as it is unsafe."
 	done
 
+SwarmGrampsScript:
+	faceplayer
+	opentext
+	checkflag ENGINE_SWARM
+	iftrue .skiprandomswarm
+	random 4
+	ifequal 0, .dunsparce
+	ifequal 1, .yanma
+    ifequal 2, .qwilfish
+	ifequal 3, .murkrow
+
+.dunsparce
+	setflag ENGINE_SWARM
+	swarm DARK_CAVE_VIOLET_ENTRANCE
+	writetext SwarmDunsparceText
+	waitbutton
+	closetext
+	end
+
+.yanma
+	setflag ENGINE_SWARM
+	swarm ROUTE_35
+	writetext SwarmYanmaText
+	waitbutton
+	closetext
+	end
+
+.qwilfish
+	setflag ENGINE_SWARM
+	swarm ROUTE_32
+	writetext SwarmQwilfishText
+	waitbutton
+	closetext
+	end
+
+.murkrow
+	setflag ENGINE_SWARM
+	swarm ROUTE_37
+	writetext SwarmMurkrowText
+	waitbutton
+	closetext
+	end
+
+.skiprandomswarm
+	writetext SkipSwarmText
+	waitbutton
+	closetext
+	end
+
+SwarmDunsparceText:
+	text "Let me see…"
+	line "What did the news"
+	cont "say?"
+
+	para "Oh yes! There's a"
+	line "swarm of DUNSPARCE"
+	cont "at DARK CAVE."
+	done
+	
+SwarmYanmaText:
+	text "Let me see…"
+	line "What did the news"
+	cont "say?"
+
+	para "Oh yes! There's a"
+	line "swarm of YANMA"
+	cont "on ROUTE 35."
+	done
+	
+SwarmQwilfishText:
+	text "Let me see…"
+	line "What did the news"
+	cont "say?"
+
+	para "Oh yes! There's a"
+	line "swarm of QWILFISH"
+	cont "on ROUTE 32."
+	done
+
+SwarmMurkrowText:
+	text "Let me see…"
+	line "What did the news say?"
+
+	para "Oh yes! There's a"
+	line "swarm of MURKROW"
+	cont "on ROUTE 37."
+	done
+
+SkipSwarmText:
+	text "Often #MON"
+	line "of unusual colors"
+
+	para "are reported in"
+	line "swarms."
+	done
+
 EcruteakCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -296,3 +392,4 @@ EcruteakCity_MapEvents:
 	object_event  9, 22, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityFisherScript, -1
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
 	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
+	object_event 15, 18, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SwarmGrampsScript, -1
