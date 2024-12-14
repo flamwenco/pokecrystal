@@ -21,4 +21,5 @@ Emotes:
 	emote BoulderDustGFX, 2, $fe
 	emote GrassRustleGFX, 1, $fe
 	emote AnimPokeBallSpriteGFX, 12, $f0
+	emote PuddleSplashGFX, 1, $ff
 	assert_table_length NUM_EMOTES

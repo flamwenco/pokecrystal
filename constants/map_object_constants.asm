@@ -179,6 +179,7 @@ DEF MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_FOLLOWEROBJ          ; 25
 	const SPRITEMOVEDATA_POKEBALL_OPENING     ; 26
 	const SPRITEMOVEDATA_POKEBALL_CLOSING     ; 27
+	const SPRITEMOVEDATA_PUDDLE
 DEF NUM_SPRITEMOVEDATA EQU const_value
 
 ; StepFunction_FromMovement.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -214,6 +215,7 @@ DEF NUM_SPRITEMOVEDATA EQU const_value
 	const SPRITEMOVEFN_FOLLOWER_OBJ          ; 1c
 	const SPRITEMOVEFN_POKEBALL_OPENING      ; 1d
 	const SPRITEMOVEFN_POKEBALL_CLOSING      ; 1e
+	const SPRITEMOVEFN_PUDDLE
 DEF NUM_SPRITEMOVEFN EQU const_value
 
 ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
@@ -268,6 +270,7 @@ DEF NUM_STEP_TYPES EQU const_value
 	const OBJECT_ACTION_BOULDER_DUST  ; 0e
 	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
 	const OBJECT_ACTION_SKYFALL       ; 10
+	const OBJECT_ACTION_PUDDLE_SPLASH
 DEF NUM_OBJECT_ACTIONS EQU const_value
 
 ; Facings indexes (see data/sprites/facings.asm)
@@ -304,6 +307,8 @@ DEF NUM_OBJECT_ACTIONS EQU const_value
 	const FACING_BOULDER_DUST_2 ; 1d
 	const FACING_GRASS_1        ; 1e
 	const FACING_GRASS_2        ; 1f
+	const FACING_SPLASH_1
+	const FACING_SPLASH_2
 DEF NUM_FACINGS EQU const_value
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
