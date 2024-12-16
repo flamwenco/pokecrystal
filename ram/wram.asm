@@ -323,14 +323,6 @@ wTilemapEnd::
 ; This union spans 480 bytes.
 SECTION UNION "Miscellaneous", WRAM0
 
-; surrounding tiles
-; This buffer determines the size for the rest of the union;
-; it uses exactly 480 bytes.
-wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
-
-
-SECTION UNION "Miscellaneous", WRAM0
-
 ; box save buffer
 ; SaveBoxAddress uses this buffer in three steps because it
 ; needs more space than the buffer can hold.
@@ -2511,9 +2503,9 @@ wTilesetBlocksBank:: db
 wTilesetBlocksAddress:: dw
 wTilesetCollisionBank:: db
 wTilesetCollisionAddress:: dw
+wTilesetAttributesBank:: db
+wTilesetAttributesAddress:: dw
 wTilesetAnim:: dw ; bank 3f
-	ds 2 ; unused
-wTilesetPalettes:: dw ; bank 3f
 wTilesetEnd::
 	assert wTilesetEnd - wTileset == TILESET_LENGTH
 
@@ -2759,7 +2751,7 @@ wCurBaseDataEnd::
 
 wCurDamage:: dw
 
-	ds 1
+wTilesetDataAddress:: dw
 
 wMornEncounterRate::  db
 wDayEncounterRate::   db
@@ -2795,8 +2787,6 @@ wNumFleeAttempts:: db
 wMonTriedToEvolve:: db
 
 wTimeOfDay:: db
-
-	ds 1
 
 
 SECTION "Enemy Party", WRAMX
@@ -3539,6 +3529,12 @@ ENDU
 SECTION "News Script RAM", WRAMX
 
 w4_d000:: ds $1000
+
+
+SECTION "Surrounding Data", WRAMX
+
+wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
+wSurroundingAttributes:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 
 
 SECTION "GBC Video", WRAMX, ALIGN[8]
