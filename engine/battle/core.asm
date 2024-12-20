@@ -7375,7 +7375,7 @@ GiveExperiencePoints:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurSpecies], a
-	;ld [wTempSpecies], a ; unused?
+	ld [wTempSpecies], a ; unused?
 	call GetBaseData
 	ld hl, MON_MAXHP + 1
 	add hl, bc
@@ -7482,7 +7482,7 @@ GiveExperiencePoints:
 	xor a ; PARTYMON
 	ld [wMonType], a
 	ld a, [wCurSpecies]
-	;ld [wTempSpecies], a ; unused?
+	ld [wTempSpecies], a ; unused?
 	ld a, [wCurPartyLevel]
 	push af
 	ld c, a

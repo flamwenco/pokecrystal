@@ -241,9 +241,6 @@ Route13_Blocks:
 Route21_Blocks:
 	INCBIN "maps/Route21.ablk"
 
-BetaSproutTower7_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSproutTower7.ablk"
-
 Route17_Blocks:
 	INCBIN "maps/Route17.ablk"
 
