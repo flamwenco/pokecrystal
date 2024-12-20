@@ -31,3 +31,7 @@ For other pret projects, see [pret.github.io](https://pret.github.io/).
 [symbols]: https://github.com/pret/pokecrystal/tree/symbols
 [ci]: https://github.com/pret/pokecrystal/actions
 [ci-badge]: https://github.com/pret/pokecrystal/actions/workflows/main.yml/badge.svg
+
+## Credits
+Morty, Eusine, and Chris/Kris sprites: TrainerDX
+Red sprite: MegaBlueAce
