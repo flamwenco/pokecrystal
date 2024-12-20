@@ -1,10 +1,13 @@
 MACRO tileset
-	dba \1GFX, \1Meta, \1Coll, \1Attr
+	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
+	dw NULL
+	dw \1PalMap
 ENDM
 
 ; Associated data:
-; - The *GFX, *Meta, *Coll and *Attr are defined in gfx/tilesets.asm
+; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
+; - The *PalMap are defined in gfx/tileset_palette_maps.asm
 ; - The *Anim are defined in engine/tilesets/tileset_anims.asm
 
 Tilesets::
